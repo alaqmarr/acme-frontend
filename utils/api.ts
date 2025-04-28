@@ -27,6 +27,7 @@ export interface Category {
   id: string;
   name: string;
   slug: string;
+  imageUrl: string | null;
   description: string | null;
   subcategories: Subcategory[];
   products: Product[];
@@ -38,6 +39,7 @@ export interface Subcategory {
   slug: string;
   description: string | null;
   categoryId: string;
+  imageUrl: string | null;
 }
 
 // Fetch all products

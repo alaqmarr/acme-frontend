@@ -3,6 +3,7 @@ import { ProductCard } from '@/components/ProductCard';
 import { notFound } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { NotFound } from '@/components/not-found';
+import Image from 'next/image';
 
 export default async function CategoryPage({
   params,
@@ -36,6 +37,12 @@ export default async function CategoryPage({
 
             className="mb-12"
           >
+            <div
+              className='w-full flex items-center justify-center'
+            >
+              <Image src={category.imageUrl || "/logo.png"} alt={""} height={300} width={600} className='rounded-md' />
+            </div>
+            <br />
             <h1 className="text-3xl font-bold text-gray-900 mb-2">
               {category.name}
             </h1>
@@ -57,8 +64,9 @@ export default async function CategoryPage({
                   <div
 
                     key={subcategory.id}
-                    className="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center"
+                    className="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center flex align-center h-fit justify-around"
                   >
+                    <img src={subcategory.imageUrl || "/logo.png"} alt="" className='w-[50px]' />
                     <a
                       href={`/category/${subcategory.id}`}
                       className="text-indigo-600 hover:text-indigo-800 font-medium"
