@@ -68,7 +68,7 @@ export default async function CategoryPage({
                   >
                     <img src={subcategory.imageUrl || "/logo.png"} alt="" className='w-[50px]' />
                     <a
-                      href={`/category/${subcategory.id}`}
+                      href={`/category/${category.id}/${subcategory.id}`}
                       className="text-indigo-600 hover:text-indigo-800 font-medium"
                     >
                       {subcategory.name}
