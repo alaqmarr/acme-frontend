@@ -1,18 +1,20 @@
-import { fetchProducts, fetchCategories, Product, Category, Subcategory } from '@/utils/api';
+import { fetchProducts, fetchCategories, Product, Category, Subcategory, fetchBrands } from '@/utils/api';
 import { ProductCard } from '@/components/ProductCard';
 import { notFound } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { NotFound } from '@/components/not-found';
 import Image from 'next/image';
+import BrandsSlider from '@/components/BrandSlider';
 
 export default async function CategoryPage({
   params,
 }: {
   params: Promise<{ id: string }>;
 }) {
-  const [products, categories] = await Promise.all([
+  const [products, categories, brands] = await Promise.all([
     fetchProducts(),
     fetchCategories(),
+    fetchBrands(),
   ]);
 
   const resolvedParams = await params;
@@ -35,7 +37,7 @@ export default async function CategoryPage({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div
 
-            className="mb-12"
+            className="mb-4"
           >
             <div
               className='w-full flex items-center justify-center'
@@ -49,6 +51,7 @@ export default async function CategoryPage({
             <p className="text-gray-600">
               Browse our selection of {category.name.toLowerCase()} products
             </p>
+          <BrandsSlider brands={brands} />
           </div>
 
           {subcategories.length > 0 && (

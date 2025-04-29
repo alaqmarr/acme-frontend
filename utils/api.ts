@@ -42,6 +42,13 @@ export interface Subcategory {
   imageUrl: string | null;
 }
 
+interface Brand {
+  id: number;
+  name: string;
+  image: string;
+  width?: number; // Optional width for the logo
+  height?: number; // Optional height for the logo
+}
 // Fetch all products
 export const fetchProducts = async (): Promise<Product[]> => {
   try {
@@ -60,6 +67,17 @@ export const fetchCategories = async (): Promise<Category[]> => {
     return response.data;
   } catch (error) {
     console.error("Error fetching categories:", error);
+    throw error;
+  }
+};
+
+// Fetch all brands
+export const fetchBrands = async (): Promise<Brand[]> => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/brands`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching brands:", error);
     throw error;
   }
 };
