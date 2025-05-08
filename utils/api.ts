@@ -52,8 +52,16 @@ interface Brand {
 // Fetch all products
 export const fetchProducts = async (): Promise<Product[]> => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/products`);
-    return response.data;
+    const response = await fetch(`${API_BASE_URL}/products`, {
+      method: "GET",
+      headers: {
+      "Cache-Control": "no-cache",
+      },
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return await response.json();
   } catch (error) {
     console.error("Error fetching products:", error);
     throw error;
@@ -63,8 +71,16 @@ export const fetchProducts = async (): Promise<Product[]> => {
 // Fetch all categories with subcategories
 export const fetchCategories = async (): Promise<Category[]> => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/categories`);
-    return response.data;
+    const response = await fetch(`${API_BASE_URL}/categories`, {
+      method: "GET",
+      headers: {
+      "Cache-Control": "no-cache",
+      },
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return await response.json();
   } catch (error) {
     console.error("Error fetching categories:", error);
     throw error;
@@ -74,8 +90,16 @@ export const fetchCategories = async (): Promise<Category[]> => {
 // Fetch all brands
 export const fetchBrands = async (): Promise<Brand[]> => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/brands`);
-    return response.data;
+    const response = await fetch(`${API_BASE_URL}/brands`, {
+      method: "GET",
+      headers: {
+      "Cache-Control": "no-cache",
+      },
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return await response.json();
   } catch (error) {
     console.error("Error fetching brands:", error);
     throw error;
@@ -85,8 +109,16 @@ export const fetchBrands = async (): Promise<Brand[]> => {
 // Fetch single product by slug
 export const fetchProductBySlug = async (slug: string): Promise<Product> => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/products/${slug}`);
-    return response.data;
+    const response = await fetch(`${API_BASE_URL}/products/${slug}`, {
+      method: "GET",
+      headers: {
+      "Cache-Control": "no-cache",
+      },
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return await response.json();
   } catch (error) {
     console.error(`Error fetching product with slug ${slug}:`, error);
     throw error;
@@ -96,8 +128,16 @@ export const fetchProductBySlug = async (slug: string): Promise<Product> => {
 // Fetch single category by slug with products and subcategories
 export const fetchCategoryBySlug = async (slug: string): Promise<Category> => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/categories/${slug}`);
-    return response.data;
+    const response = await fetch(`${API_BASE_URL}/categories/${slug}`, {
+      method: "GET",
+      headers: {
+      "Cache-Control": "no-cache",
+      },
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return await response.json();
   } catch (error) {
     console.error(`Error fetching category with slug ${slug}:`, error);
     throw error;
@@ -110,10 +150,16 @@ export const fetchProductsBySubcategory = async (
   subcategorySlug: string
 ): Promise<Product[]> => {
   try {
-    const response = await axios.get(
-      `${API_BASE_URL}/subcategories/${subcategorySlug}`
-    );
-    return response.data;
+    const response = await fetch(`${API_BASE_URL}/subcategories/${subcategorySlug}`, {
+      method: "GET",
+      headers: {
+      "Cache-Control": "no-cache",
+      },
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return await response.json();
   } catch (error) {
     console.error(
       `Error fetching products for subcategory ${subcategorySlug}:`,
@@ -126,8 +172,16 @@ export const fetchProductsBySubcategory = async (
 // Fetch single product by ID
 export const fetchProductById = async (id: string): Promise<Product> => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/products/${id}`);
-    return response.data;
+    const response = await fetch(`${API_BASE_URL}/products/${id}`, {
+      method: "GET",
+      headers: {
+      "Cache-Control": "no-cache",
+      },
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return await response.json();
   } catch (error) {
     console.error(`Error fetching product with ID ${id}:`, error);
     throw error;
@@ -137,8 +191,16 @@ export const fetchProductById = async (id: string): Promise<Product> => {
 // Fetch single category by ID with products and subcategories
 export const fetchCategoryById = async (id: string): Promise<Category> => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/categories/${id}`);
-    return response.data;
+    const response = await fetch(`${API_BASE_URL}/categories/${id}`, {
+      method: "GET",
+      headers: {
+      "Cache-Control": "no-cache",
+      },
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return await response.json();
   } catch (error) {
     console.error(`Error fetching category with ID ${id}:`, error);
     throw error;
@@ -151,8 +213,16 @@ export const fetchProductsBySubcategoryId = async (
   subcategoryId: string
 ): Promise<Product[]> => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/subcategories`);
-    return response.data;
+    const response = await fetch(`${API_BASE_URL}/subcategories`, {
+      method: "GET",
+      headers: {
+      "Cache-Control": "no-cache",
+      },
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return await response.json();
   } catch (error) {
     console.error(
       `Error fetching products for subcategory ID ${subcategoryId}:`,
