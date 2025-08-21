@@ -16,7 +16,6 @@ export default async function Home() {
       <BrandsSlider brands={brands} />
       <FeaturedProducts products={products} />
       <AboutSection />
-      <Testimonials />
       <Newsletter />
     </>
   );
