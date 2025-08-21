@@ -21,16 +21,14 @@ export default function AboutSection() {
           
           <div
           >
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">About ACME</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-6">About ACME Industrial Equipments Company</h2>
             <p className="text-gray-600 mb-4">
-              Founded in 2010, ACME Store has been providing high-quality products to customers 
-              worldwide. Our mission is to deliver exceptional value while maintaining the 
-              highest standards of quality and customer service.
+              Acme Industrial Equipments Company, headquartered in Rani Gunj, Secunderabad (Telangana), is a trusted supplier and manufacturer of a wide range of industrial valves and equipment. Operating with a customer-first approach, the company has built a reputation for reliability and swift service.
             </p>
             <p className="text-gray-600 mb-6">
               With a team of dedicated professionals and a carefully curated selection of products, 
               we strive to be your one-stop shop for all your needs. Our commitment to excellence 
-              has earned us recognition as one of the fastest-growing e-commerce platforms.
+              has earned us recognition as one of the best equipments company. 
             </p>
             <Button asChild>
               <Link href="/about">Learn More About Us</Link>
