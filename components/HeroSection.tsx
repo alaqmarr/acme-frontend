@@ -10,10 +10,10 @@ export default function HeroSection() {
           className="text-center"
         >
           <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            Welcome to ACME Flow Control
+            Welcome to ACME Industrial Equipments Company
           </h1>
           <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
-            Discover high-quality products for every need at unbeatable prices.
+            Discover high-quality products for every need.
           </p>
           <div className="flex justify-center space-x-4">
             <Button asChild variant="secondary" size="lg">
