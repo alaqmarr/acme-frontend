@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 
-const Home = () => {
+const Home = ({brands, categories} : {brands: any, categories: any}) => {
     const html = `
         <main>
         <!-- hero start -->
@@ -53,15 +53,9 @@ const Home = () => {
         <!-- marquee start -->
         <section class="marquee" data-bg-color="#131313">
             <div class="mr-marquee marquee-left">
-                <div class="mr-marquee__item"><span><img src="/assets/img/shape/marquee_01.png" alt=""></span>Branding</div>
-                <div class="mr-marquee__item"><span><img src="/assets/img/shape/marquee_02.png" alt=""></span>Illustration</div>
-                <div class="mr-marquee__item"><span><img src="/assets/img/shape/marquee_03.png" alt=""></span>Software</div>
-                <div class="mr-marquee__item"><span><img src="/assets/img/shape/marquee_04.png" alt=""></span>Digital Solution</div>
-                <div class="mr-marquee__item"><span><img src="/assets/img/shape/marquee_05.png" alt=""></span>Ideas</div>
-                <div class="mr-marquee__item"><span><img src="/assets/img/shape/marquee_03.png" alt=""></span>Software</div>
-                <div class="mr-marquee__item"><span><img src="/assets/img/shape/marquee_04.png" alt=""></span>Digital Marketing</div>
-                <div class="mr-marquee__item"><span><img src="/assets/img/shape/marquee_01.png" alt=""></span>Branding</div>
-                <div class="mr-marquee__item"><span><img src="/assets/img/shape/marquee_03.png" alt=""></span>Marketing</div>
+                ${brands.map((brand: any) => `
+                    <div class="mr-marquee__item"><span><img src="${brand.image}" alt="" width="100" style="mix-blend-mode:normal;"></span>${brand.name}</div>
+                `).join('')}
             </div>
         </section>
         <!-- marquee end -->
@@ -81,7 +75,7 @@ const Home = () => {
                                     <div class="xb-item--icon">
                                         <img src="/assets/img/icon/rm_feat1.png" alt="">
                                     </div>
-                                    <h3 class="xb-item--title">Better <br> Audiences</h3>
+                                    <h3 class="xb-item--title">Quick <br> Replies</h3>
                                     <div class="xb-item--shape">
                                         <img src="/assets/img/icon/rm_feat_shape.png" alt="">
                                     </div>
@@ -97,7 +91,7 @@ const Home = () => {
                                     <div class="xb-item--icon">
                                         <img src="/assets/img/icon/rm_feat2.png" alt="">
                                     </div>
-                                    <h3 class="xb-item--title">Better <br> Analytics</h3>
+                                    <h3 class="xb-item--title">Better <br> Products</h3>
                                     <div class="xb-item--shape">
                                         <img src="/assets/img/icon/rm_feat_shape.png" alt="">
                                     </div>
@@ -129,8 +123,8 @@ const Home = () => {
                                     <div class="xb-item--icon">
                                         <img src="/assets/img/icon/rm_feat4.png" alt="">
                                     </div>
-                                    <h3 class="xb-item--title">Focus <br> 
-                                        on People</h3>
+                                    <h3 class="xb-item--title">Customer <br> 
+                                        Satisfaction</h3>
                                     <div class="xb-item--shape">
                                         <img src="/assets/img/icon/rm_feat_shape.png" alt="">
                                     </div>
@@ -146,7 +140,7 @@ const Home = () => {
                                     <div class="xb-item--icon">
                                         <img src="/assets/img/icon/rm_feat5.png" alt="">
                                     </div>
-                                    <h3 class="xb-item--title">Business <br> Innovation</h3>
+                                    <h3 class="xb-item--title">Best <br> Price</h3>
                                     <div class="xb-item--shape">
                                         <img src="/assets/img/icon/rm_feat_shape.png" alt="">
                                     </div>
@@ -171,14 +165,12 @@ const Home = () => {
                         <div class="col-lg-8">
                             <div class="sec-title sec-title--marketing" data-aos="fade-right" data-aos-duration="600">
                                 <span class="subtitle">Who we are?</span>
-                                <h2 class="title mb-45">We're passionate digital marketing <br> experts boosting online business <br> success
+                                <h2 class="title mb-45">At ACME Industrial equipments company, <br> we deal in
                                     <span class="xb-title--typewriter">
-                                        <span class="xb-item--text highlight">Helping businesses</span>
-                                        <span class="xb-item--text highlight">Targeted advertising</span>
-                                        <span class="xb-item--text highlight">Custom solutions</span>
+                                        ${categories.map((category: any) => `<span class="xb-item--text highlight">${category.name}</span>`)}
                                     </span>
                                 </h2>
-                                <p>In today's hyper-connected digital landscape, the success of online <br> businesses hinges on their ability to stand out, engage audiences <br> effectively, and adapt to ever-evolving trends. </p>
+                                <p>Acme Industrial Equipments Company, headquartered in Rani Gunj, Secunderabad (Telangana), is a trusted supplier and manufacturer of a wide range of industrial valves and equipment. Operating with a customer-first approach, the company has built a reputation for reliability and swift service.</p>
                             </div>
                         </div>
                         <div class="col-lg-4">
