@@ -82,7 +82,6 @@ const Header = ({ categories, products }: { categories: any, products: any }) =>
                                             <li class="menu-item menu-item-has-children">
                                                 <a href="#"><span>Products</span></a>
                                                 <ul class="sub-menu">
-                                                    <li class="menu-item"><a href="about.html"><span>About</span></a></li>
                                                     ${products.map((product:any) => `
                                                         <li class="menu-item"><a href="/"><span>${product.name}</span></a></li>
                                                     `).join('')}
