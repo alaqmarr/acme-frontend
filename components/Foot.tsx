@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 
-const Foot = () => {
+const Foot = ({categories}: {categories: any}) => {
     const html = `
         <!-- footer start -->
     <footer class="xb-footer sticky footer-marketing mr-noise-bg pt-115 pb-45">
@@ -10,25 +10,24 @@ const Foot = () => {
                 <div class="mr-footer-holder mb-30">
                     <div class="ul_li mb-25">
                         <div class="xb-item--logo">
-                            <img src="assets/img/logo/mr_f_logo.png" alt="">
+                            <img src="/acmelogo.png" alt="" width="120">
                         </div>
-                        <h2>Let's Work</h2>
+                        <h2>Let's Connect</h2>
                     </div>
                     <div class="ul_li">
-                        <h2>With Us</h2>
-                        <a class="xb-btn xb-btn--marketing" href="contact.html">
+                        <a class="xb-btn xb-btn--marketing" href="tel:+919908082672">
                             <div class="btn-anim-wrap">
-                                <span class="button-text">book a call</span>
-                                <span class="button-text">book a call</span>
+                                <span class="button-text">contact us</span>
+                                <span class="button-text">contact us</span>
                             </div>
                         </a>
                     </div>
                 </div>
                 <div class="mr-footer-info mb-30">
                     <h3 class="xb-item--title">Get in touch</h3>
-                    <p class="xb-item--info">+91 590088 55 12 <br>
-                        seargin@gmail.com <br>
-                        Sunshine park, Floor No 05</p>
+                    <p class="xb-item--info">+919908082672<br>
+                        acmeequipmentscompany@gmail.com <br>
+                        Ranigunj, Secunderabad 500003</p>
                     <ul class="xb-item--social ul_li">
                         <li><a href="#!"><i class="fab fa-facebook-f"></i></a></li>
                         <li><a href="#!"><i class="fab fa-linkedin-in"></i></a></li>
@@ -51,16 +50,17 @@ const Foot = () => {
                     </div>
                     <div class="col-lg-3 footer-col mt-40">
                         <div class="footer-widget">
-                            <h3 class="widget-title">Services</h3>
+                            <h3 class="widget-title">Categories</h3>
                             <ul class="footer-links list-unstyled">
-                                <li><a href="#!">SEO Analysis</a></li>
-                                <li><a href="#!">Social Media</a></li>
-                                <li><a href="#!">Website Development</a></li>
-                                <li><a href="#!">Email Marketing</a></li>
-                                <li><a href="#!">Content Marketing</a></li>
+                                ${
+                                    categories.map((category: any) => `
+                                        <li><a href="/products?category=${category.id}">${category.name}</a></li>
+                                    `).join('')
+                                }
                             </ul>
                         </div>
                     </div>
+                    <!--
                     <div class="col-lg-3 footer-col mt-40">
                         <div class="footer-widget">
                             <h3 class="widget-title">Information</h3>
@@ -85,10 +85,11 @@ const Foot = () => {
                             </ul>
                         </div>
                     </div>
+                    -->
                 </div>
             </div>
             <div class="mr-footer-copyright ul_li_between">
-                <p class="mt-15">Copyright © 2023 Seargin. All rights reserved.</p>
+                <p class="mt-15">Copyright © 2025 ACME. All rights reserved. Designed and Developed by THE WEB SENSEI</p>
                 <ul class="mr-footer-nav ul_li mt-15">
                     <li><a href="#!">Terms & Conditions</a></li>
                     <li><a href="#!">Privacy Policy</a></li>

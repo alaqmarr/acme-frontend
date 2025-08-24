@@ -1,9 +1,26 @@
 import { fetchProductBySlug } from '@/utils/api';
-import { notFound } from 'next/navigation';
-import Image from 'next/image';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
 import { NotFound } from '@/components/not-found';
+import { Metadata } from 'next';
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+    const { slug } = await params;
+    const product = await fetchProductBySlug(slug);
+    if (!product) {
+        return {
+            title: 'Product Not Found - ACME INDUSTRIAL EQUIPMENTS COMPANY',
+            description: 'The product you are looking for does not exist.',
+        };
+    }
+    return {
+        title: `${product.name} - ACME INDUSTRIAL EQUIPMENTS COMPANY`,
+        description: product.description || 'Discover high-quality products at unbeatable prices',
+        openGraph: {
+            title: `${product.name} - ACME INDUSTRIAL EQUIPMENTS COMPANY`,
+            description: product.description || 'Discover high-quality products at unbeatable prices',
+            images: product.images?.length ? product.images.map((img: any) => ({ url: img.url })) : undefined,
+        },
+    };
+}
 
 export default async function ProductPage({
     params,
@@ -18,84 +35,118 @@ export default async function ProductPage({
         <NotFound title='Product not found' message='The product you are looking for does not exist.' />
     )
 
-    return (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {/* Product Images */}
-                <div className="space-y-4">
-                    <div className="relative aspect-square w-full rounded-lg overflow-hidden bg-gray-100">
-                        <Image
-                            src={product.images[0]?.url || '/placeholder-product.jpg'}
-                            alt={product.name}
-                            fill
-                            className="object-cover"
-                            priority
-                        />
-                    </div>
-                    {product.images.length > 1 && (
-                        <div className="grid grid-cols-4 gap-2">
-                            {product.images.slice(1).map((image) => (
-                                <div key={image.id} className="relative aspect-square rounded-md overflow-hidden bg-gray-100">
-                                    <Image
-                                        src={image.url}
-                                        alt={product.name}
-                                        fill
-                                        className="object-cover"
-                                    />
-                                </div>
-                            ))}
+    const html = `
+            <main>
+
+            <!-- breadcrumb start -->
+            <section class="breadcrumb bg_img" data-bg-color="#E7E9EE" data-background="assets/img/bg/page_title.png">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <div class="breadcrumb__content">
+                                <h2 class="breadcrumb__title">${product.name}</h2>
+                                <ul class="breadcrumb__list clearfix">
+                                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                    <li class="breadcrumb-item">${product.name} Details</li>
+                                </ul>
+                            </div>
                         </div>
-                    )}
+                    </div>
                 </div>
+            </section>
+            <!-- breadcrumb end -->
 
-                {/* Product Info */}
-                <div className="space-y-4">
-                    <h1 className="text-3xl font-bold">{product.name}</h1>
+            <!-- shop single start -->
+            <section class="shop-single-section pt-150 pb-120">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="product-single-wrap mb-30">
+                                <div class="product_details_img ">
+                                    <div class="tab-content" id="myTabContent">
+                                        ${product.images.map((image: any, index: number) => `
+                                            <div class="tab-pane ${index === 0 ? 'show active' : ''}" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                                <div class="pl_thumb">
+                                                    <img src="${image.url}" alt="">
+                                                </div>
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                </div>
+                                <div class="shop_thumb_tab">
+                                    <ul class="nav" id="myTab2" role="tablist">
+                                        ${product.images.map((image: any, index: number) => `
+                                            <li class="nav-item">
+                                                <button class="nav-link ${index === 0 ? 'active' : ''}" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="${index === 0}"><img src="${image.url}" alt=""> </button>
+                                            </li>
+                                        `).join('')}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
 
-                    <div className="flex items-center space-x-2 text-sm text-gray-600">
-                        <span>Category:</span>
-                        <span className="text-indigo-600">
-                            {product.category.name}
-                        </span>
-                        {product.subcategory && (
-                            <>
-                                <span>/</span>
-                                <span className="text-indigo-600">
-                                    {product.subcategory.name}
-                                </span>
-                            </>
-                        )}
-                    </div>
+                        <div class="col-md-6 product-details-col">
+                            <div class="product-details mb-30">
+                                <h2>${product.name}</h2>
+                                <p>
+                                ${product.description}
+                                </p>
 
-                    {/* <div className="text-2xl font-bold">${product.price.toFixed(2)}</div> */}
+                                <div class="product-option">
+                                    <form class="form">
+                                        <div class="product-row">
+                                            <div class="add-to-cart-btn">
+                                                <a
+                                                href=${`https://wa.me/+919908082672?text=${encodeURIComponent("I want to enquire about " + product.name)}`}
+                                                >
+                                                <button class="xb-btn"><i class="far fa-shopping-bag"></i>ENQUIRE</button>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div> 
 
-                    <div className={product.quantity > 0 ? "text-green-600" : "text-red-600"}>
-                        {product.quantity > 0 ? `In Stock (${product.quantity} available)` : 'Out of Stock'}
-                    </div>
+                                <div class="thb-product-meta-after mt-20">
+                                    <div class="product_meta">
+                                        <span class="posted_in">Categories: <a href="/products?categoryId=${product.category.id}">${product.category.name}</a></span>
+                                    </div>
+                                </div>
+                                
+                                
+                            </div> 
+                        </div> <!-- end col -->
+                    </div> <!-- end row -->
 
-                    <div className="prose max-w-none">
-                        <p
-                        className="tiptap-rendered"
-                            dangerouslySetInnerHTML={{ __html: product.description }}
-                        ></p>
-                    </div>
+                    <div class="row">
+                        <div class="col col-xs-12">
+                            <div class="single-product-info">
+                                <!-- Nav tabs -->
+                                <div class="tablist">
+                                    <ul class="nav nav-tabs" id="pills-tab" role="tablist">
+                                        <li><button  class="active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#tb-01">Information</button></li>
+                                    </ul>
+                                </div>
+                            
+                                <!-- Tab panes -->
+                                <div class="tab-content" id="pills-tabContent">
+                                    <div class="tab-pane fade show active" id="tb-01">
+                                        ${product.description}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- end row -->
+                    
+                </div> <!-- end of container -->
+            </section>
+            <!-- shop single start -->
 
-                    {/* <button 
-            disabled={product.quantity <= 0}
-            className={`px-6 py-3 rounded-md ${product.quantity > 0 ? 'bg-indigo-600 text-white hover:bg-indigo-700' : 'bg-gray-300 text-gray-500 cursor-not-allowed'}`}
-          >
-            {product.quantity > 0 ? 'Add to Cart' : 'Out of Stock'}
-          </button> */}
-                    <Link
-                        href={`https://wa.me/+919908082672?text=${encodeURIComponent("I want to enquire about " + product.name)}`}
-                    >
-                        <Button
-                        >
-                            Enquire about this product
-                        </Button>
-                    </Link>
-                </div>
-            </div>
+        </main>
+        `
+
+    return (
+        <div dangerouslySetInnerHTML={{ __html: html }}>
+
         </div>
     );
 }

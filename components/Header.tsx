@@ -21,8 +21,7 @@ const Header = ({ categories, products }: { categories: any, products: any }) =>
             <div class="container">
                 <div class="ul_li_between">
                     <div class="xb-header__logo">
-                        <p>
-                        ACME
+                        <a href="/"><img src="/logo.png" alt="" width="120"></a>
                     </div>
                     <div class="main-menu__wrap ul_li navbar navbar-expand-lg">
                         <nav class="main-menu collapse navbar-collapse">
@@ -83,7 +82,7 @@ const Header = ({ categories, products }: { categories: any, products: any }) =>
                                                 <a href="#"><span>Products</span></a>
                                                 <ul class="sub-menu">
                                                     ${products.map((product:any) => `
-                                                        <li class="menu-item"><a href="/"><span>${product.name}</span></a></li>
+                                                        <li class="menu-item"><a href="/products/${product.id}"><span>${product.name}</span></a></li>
                                                     `).join('')}
                                                 </ul>
                                             </li>
@@ -91,7 +90,7 @@ const Header = ({ categories, products }: { categories: any, products: any }) =>
                                                 <a href="portfolio.html"><span>Categories</span></a>
                                                 <ul class="sub-menu">
                                                     ${categories.map((category:any) => `
-                                                        <li class="menu-item"><a href="/"><span>${category.name}</span></a></li>
+                                                        <li class="menu-item"><a href="/products?categoryId=${category.id}"><span>${category.name}</span></a></li>
                                                     `).join('')}
                                                 </ul>
                                             </li>
@@ -104,9 +103,6 @@ const Header = ({ categories, products }: { categories: any, products: any }) =>
                         </div>
                     </div>
                     <div class="xb-header__right ul_li">
-                        <ul class="xb-header__action ul_li">
-                            <li><a class="header-search-btn" href="javascript:void(0);"><img src="assets/img/icon/ins_search.svg" alt=""></a></li>
-                        </ul>
                         <div class="d-none d-lg-block">
                             <a class="xb-header-bar offcanvas-sidebar-btn ml-30" href="javascript:void(0);">
                                 <div class="xb-header-bar__icon">
@@ -136,16 +132,6 @@ const Header = ({ categories, products }: { categories: any, products: any }) =>
 
         <!-- header end -->
 
-    <!-- header search start -->
-    <div class="header-search-form-wrapper style-black">
-        <div class="xb-search-close xb-close"></div>
-        <div class="header-search-container">
-            <form role="search" class="search-form" action="#">
-                <input type="search" class="search-field" placeholder="Search …" value="" name="s">
-            </form>
-        </div>
-    </div>
-    <!-- header search end -->
 
     <!-- sidebar-info start -->
     <div class="offcanvas-sidebar">
@@ -154,30 +140,22 @@ const Header = ({ categories, products }: { categories: any, products: any }) =>
         </div>
         <div class="sidebar-top mb-65">
             <div class="sidebar-logo mb-40">
-                <a href="index.html">
-                    <img src="assets/img/logo/logo3.svg" alt="logo">
+                <a href="/">
+                    <img src="/logo.png" alt="logo">
                 </a>
             </div>
             <div class="sidebar-content">
-                Creative Digital Strategies <br> for Business Success
+                Fulfilling all <br> industrial needs
             </div>
         </div>
     
         <div class="sidebar-contact-info mb-65">
             <h4 class="sidebar-heading">Contact Information</h4>
             <ul class="sidebar-info-list list-unstyled">
-                <li><span><img src="assets/img/icon/star-2.svg" alt=""></span>Wasington SY, UK, NY 12099</li>
-                <li><a href="#!"><span><img src="assets/img/icon/star-2.svg" alt=""></span>+81 800 123 06 78</a></li>
-                <li><a href="#!"><span><img src="assets/img/icon/star-2.svg" alt=""></span>seargin@gmail.com</a></li>
+                <li><span><img src="assets/img/icon/star-2.svg" alt=""></span>Ranigunj, Secunderabad 500003</li>
+                <li><a href="#!"><span><img src="assets/img/icon/star-2.svg" alt=""></span>+919908082672</a></li>
+                <li><a href="#!"><span><img src="assets/img/icon/star-2.svg" alt=""></span>acmeequipmentscompany@gmail.com</a></li>
             </ul>
-        </div>
-        <div class="sidebar-newsletter">
-            <h4 class="sidebar-heading">Get Regular Updated</h4>
-            <form action="#" class="sidebar-newsletter-form mr-footer-newsletter">
-                <span class="icon"><img src="assets/img/icon/mr-sms-tracking.svg" alt=""></span>
-                <input type="text" placeholder="Your Email Address">
-                <button><img src="assets/img/icon/mr_arrow_up.svg" alt=""></button>
-            </form>
         </div>
         <div class="sidebar-social mr-footer-info mt-65">
             <h4 class="sidebar-heading">follwo us</h4>
