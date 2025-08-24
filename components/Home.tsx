@@ -204,7 +204,7 @@ const Home = ({ brands, categories, products }: { brands: any, categories: any, 
 
                                 </div>
                             </div>
-                            <a class="xb-overlay" href="/product/${product.id}"></a>
+                            <a class="xb-overlay" href="/products/${product.id}"></a>
                         </div>
                             `).join('')
         }
