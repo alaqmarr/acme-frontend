@@ -51,7 +51,7 @@ const Home = ({ brands, categories, products }: { brands: any, categories: any, 
         <section class="marquee" data-bg-color="#131313">
             <div class="mr-marquee marquee-left">
                 ${brands.map((brand: any) => (`
-                    <div class="mr-marquee__item"><span><img src="${brand.image}" alt="" width="100" style="mix-blend-mode:normal;"></span>${brand.name}</div>
+                    <div class="mr-marquee__item"><span><img src="${brand.image}" alt="" width="100" style="mix-blend-mode:normal;"></span></div>
                 `))}
             </div>
         </section>
