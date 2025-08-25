@@ -2,6 +2,10 @@
 import React from 'react'
 
 const Header = ({ categories, products }: { categories: any, products: any }) => {
+    // categories with products inside
+    const filteredCategories = categories.filter((category: any) => {
+        return products.some((product: any) => product.categoryId === category.id);
+    });
     const html = `
         <header id="xb-header-area" class="site-header header-marketing is-sticky">
         <div class="xb-header__top">
@@ -27,22 +31,18 @@ const Header = ({ categories, products }: { categories: any, products: any }) =>
                         <nav class="main-menu collapse navbar-collapse">
                             <ul>
                                 <li><a href="/"><span>Home</span></a></li>
-                                <li class="menu-item-has-children">
-                                    <a href="/"><span>Products</span></a>
+                                ${
+                                    filteredCategories.map((category: any) => `
+                                        <li class="menu-item-has-children">
+                                    <a href="/products?categoryId=${category.id}"><span>${category.name}</span></a>
                                     <ul class="submenu">
-                                        ${products.map((product: any) => `
-                                            <li><a href="/"><span>${product.name}</span></a></li>
+                                        ${products.filter((product: any) => product.categoryId === category.id).map((product: any) => `
+                                            <li><a href="/products/${product.id}"><span>${product.name}</span></a></li>
                                         `).join('')}
                                     </ul>
                                 </li>
-                                <li class="menu-item-has-children">
-                                    <a href="/"><span>Categories</span></a>
-                                    <ul class="submenu">
-                                        ${categories.map((category: any) => `
-                                            <li><a href="/"><span>${category.name}</span></a></li>
-                                        `).join('')}
-                                    </ul>
-                                </li>
+                                    `).join('')
+                                }
                                 <!--
                                 <li class="menu-item-has-children">
                                     <a href="shop.html"><span>Shop</span></a>
@@ -68,32 +68,22 @@ const Header = ({ categories, products }: { categories: any, products: any }) =>
                             <div class="xb-header-menu">
                                 <div class="xb-header-menu-scroll">
                                     <div class="xb-menu-close xb-hide-xl xb-close"></div>
-                                    <div class="xb-logo-mobile xb-hide-xl">
-                                        <a href="index.html" rel="home"><img src="assets/img/logo/logo3.svg" alt=""></a></div>
-                                    <div class="xb-header-mobile-search xb-hide-xl">
-                                        <form role="search" action="#">
-                                            <input type="text" placeholder="Search..." name="s" class="search-field">
-                                        </form>
-                                    </div>
                                     <nav class="xb-header-nav">
                                         <ul class="xb-menu-primary clearfix">
                                             <li class="menu-item"><a href="/"><span>Home</span></a></li>
-                                            <li class="menu-item menu-item-has-children">
-                                                <a href="#"><span>Products</span></a>
-                                                <ul class="sub-menu">
-                                                    ${products.map((product:any) => `
-                                                        <li class="menu-item"><a href="/products/${product.id}"><span>${product.name}</span></a></li>
-                                                    `).join('')}
-                                                </ul>
-                                            </li>
-                                            <li class="menu-item menu-item-has-children">
-                                                <a href="portfolio.html"><span>Categories</span></a>
-                                                <ul class="sub-menu">
-                                                    ${categories.map((category:any) => `
-                                                        <li class="menu-item"><a href="/products?categoryId=${category.id}"><span>${category.name}</span></a></li>
-                                                    `).join('')}
-                                                </ul>
-                                            </li>
+                                            ${
+                                                filteredCategories.map((category:any) => (
+                                                    `
+                                                    <li class="menu-item menu-item-has-children" id="category-${category.id}">
+                                                        <a href="/products?categoryId=${category.id}"><span>${category.name}</span></a>
+                                                        <ul class="sub-menu">
+                                                            ${products.filter((product:any) => product.categoryId === category.id).map((product:any) => `
+                                                                <li class="menu-item"><a href="/products/${product.id}"><span>${product.name}</span></a></li>
+                                                            `).join('')}
+                                                        </ul>
+                                                    </li>
+                                                    `
+                                                )).join('')}
                                             <li class="menu-item"><a href="contact.html"><span>Contact</span></a></li>
                                         </ul>
                                     </nav>

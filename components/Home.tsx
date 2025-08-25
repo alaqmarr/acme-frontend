@@ -4,6 +4,13 @@ import React from 'react'
 const Home = ({ brands, categories, products }: { brands: any, categories: any, products: any }) => {
     // get only 5 products
     const featuredProducts = products.slice(0, 5);
+    const reverseBrands = [...brands].reverse();
+    const withProducts = categories
+        .map((category: any) => {
+            const categoryProducts = products.filter((product: any) => product.categoryId === category.id);
+            return { ...category, products: categoryProducts };
+        })
+        .filter((category: any) => category.products && category.products.length > 0);
     const html = `
         <main>
         <!-- hero start -->
@@ -13,10 +20,10 @@ const Home = ({ brands, categories, products }: { brands: any, categories: any, 
                 <div class="col-lg-6">
                     <div class="mr-hero-content">
                         <span class="xb-item--subtitle" data-aos="fade-up" data-aos-duration="500"><span><img src="/assets/img/icon/hr_icon.png" alt=""></span> Welcome to </span>
-                        <h2 class="xb-item--title" data-aos="fade-up" data-aos-duration="500" data-aos-delay="200" style="color:white;">ACME <span class="icon"><img src="/assets/img/icon/m_star.png" alt=""></span> Industrial Equipments Company <img id="reload" src="/assets/img/icon/decor2.png" alt=""></h2>
+                        <h2 class="xb-item--title" data-aos="fade-up" data-aos-duration="500" data-aos-delay="200" style="color:white;">ACME Industrial Equipments Company</h2>
                         <p class="xb-item--content mb-50" data-aos="fade-up" data-aos-duration="500" data-aos-delay="400"></p>
                         <div class="xb-item--btn" data-aos="fade-up" data-aos-duration="500" data-aos-delay="600">
-                            <a class="xb-btn xb-btn--marketing" href="">
+                            <a class="xb-btn xb-btn--marketing" href="/products">
                                 <div class="btn-anim-wrap">
                                     <span class="button-text">Our Products</span>
                                     <span class="button-text">Our Products</span>
@@ -25,11 +32,13 @@ const Home = ({ brands, categories, products }: { brands: any, categories: any, 
                         </div>
                     </div>
                 </div>
+                <!--
                 <div class="col-lg-6">
                     <div class="mr-hero-img pos-rel">
                         <img data-aos="fade-left" data-aos-duration="500" data-aos-delay="300" src="/logo.png" alt="">
                     </div>
                 </div>
+                -->
             </div>
         </div>
         <div class="mr-hero-shape">
@@ -41,9 +50,9 @@ const Home = ({ brands, categories, products }: { brands: any, categories: any, 
         <!-- marquee start -->
         <section class="marquee" data-bg-color="#131313">
             <div class="mr-marquee marquee-left">
-                ${brands.map((brand: any) => `
+                ${brands.map((brand: any) => (`
                     <div class="mr-marquee__item"><span><img src="${brand.image}" alt="" width="100" style="mix-blend-mode:normal;"></span>${brand.name}</div>
-                `).join('')}
+                `))}
             </div>
         </section>
         <!-- marquee end -->
@@ -62,17 +71,19 @@ const Home = ({ brands, categories, products }: { brands: any, categories: any, 
                                 <span class="subtitle">Who we are?</span>
                                 <h2 class="title mb-45">At ACME Industrial equipments company, <br> we deal in
                                     <span class="xb-title--typewriter">
-                                        ${categories.map((category: any) => `<span class="xb-item--text highlight">${category.name}</span>`)}
+                                        ${categories.map((category: any) => `<span class="xb-item--text highlight">${category.name}</span>`).join('')}
                                     </span>
                                 </h2>
                                 <p>Acme Industrial Equipments Company, headquartered in Rani Gunj, Secunderabad (Telangana), is a trusted supplier and manufacturer of a wide range of industrial valves and equipment. Operating with a customer-first approach, the company has built a reputation for reliability and swift service.</p>
                             </div>
                         </div>
+                        <!--
                         <div class="col-lg-4">
                             <div class="rm-about-img text-center text-lg-end" data-aos="fade-left" data-aos-duration="600" data-aos-delay="200">
                                 <img class="slide-up-down" src="/acmelogo.png" alt="">
                             </div>
                         </div>
+                        -->
                     </div>
                 </div>
             </section>
@@ -89,7 +100,7 @@ const Home = ({ brands, categories, products }: { brands: any, categories: any, 
                 `).join('')}
             </div>
             <div class="client-section__inner style-2 d-flex" data-parallax='{"x": "180"}'>
-                ${brands.map((brand: any) => `
+                ${reverseBrands.map((brand: any) => `
                     <div class="client-section__item">
                     <img src="${brand.image}" alt="${brand.name}">
                 </div>
@@ -110,7 +121,7 @@ const Home = ({ brands, categories, products }: { brands: any, categories: any, 
                 <div class="row mt-none-30">
                     <div class="col-lg-7 col-md-6 mt-30">
                         <ul class="mr-service nav nav-tabs accordion_box clearfix" id="myTab" role="tablist">
-                            ${categories.map((category: any, index: number) => `
+                            ${withProducts.map((category: any, index: number) => `
                                 <li class="nav-link accordion block active-block active" id="mr-srv-tab-1" data-bs-toggle="tab"
                                     data-bs-target="#mr-srv-1" role="tab" aria-controls="mr-srv-1" aria-selected="true">
                                 <div class="acc-btn">
@@ -136,32 +147,32 @@ const Home = ({ brands, categories, products }: { brands: any, categories: any, 
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane animated fadeInRight show active" id="mr-srv-1" role="tabpanel" aria-labelledby="mr-srv-tab-1">
                                 <div class="mr-service__img text-end">
-                                    <img src="/assets/img/service/mr_srv_01.png" alt="">
+                                    <img src="/images.jpg" alt="">
                                 </div>
                             </div>
                             <div class="tab-pane animated fadeInRight" id="mr-srv-2" role="tabpanel" aria-labelledby="mr-srv-tab-2">
                                 <div class="mr-service__img text-end">
-                                    <img src="/assets/img/service/mr_srv_02.png" alt="">
+                                    <img src="/images.jpg" alt="">
                                 </div>
                             </div>
                             <div class="tab-pane animated fadeInRight" id="mr-srv-3" role="tabpanel" aria-labelledby="mr-srv-tab-3">
                                 <div class="mr-service__img text-end">
-                                    <img src="/assets/img/service/mr_srv_03.png" alt="">
+                                    <img src="/images.jpg" alt="">
                                 </div>
                             </div>
                             <div class="tab-pane animated fadeInRight" id="mr-srv-4" role="tabpanel" aria-labelledby="mr-srv-tab-4">
                                 <div class="mr-service__img text-end">
-                                    <img src="/assets/img/service/mr_srv_01.png" alt="">
+                                    <img src="/images.jpg" alt="">
                                 </div>
                             </div>
                             <div class="tab-pane animated fadeInRight" id="mr-srv-5" role="tabpanel" aria-labelledby="mr-srv-tab-5">
                                 <div class="mr-service__img text-end">
-                                    <img src="/assets/img/service/mr_srv_02.png" alt="">
+                                    <img src="/images.jpg" alt="">
                                 </div>
                             </div>
                             <div class="tab-pane animated fadeInRight" id="mr-srv-6" role="tabpanel" aria-labelledby="mr-srv-tab-6">
                                 <div class="mr-service__img text-end">
-                                    <img src="/assets/img/service/mr_srv_03.png" alt="">
+                                    <img src="/images.jpg" alt="">
                                 </div>
                             </div>
                         </div>

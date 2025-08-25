@@ -2,6 +2,7 @@
 import React from 'react'
 
 const Foot = ({categories}: {categories: any}) => {
+    const withProducts = categories.filter((category: any) => category.products && category.products.length > 0);
     const html = `
         <!-- footer start -->
     <footer class="xb-footer sticky footer-marketing mr-noise-bg pt-115 pb-45">
@@ -23,42 +24,26 @@ const Foot = ({categories}: {categories: any}) => {
                         </a>
                     </div>
                 </div>
-                <div class="mr-footer-info mb-30">
+                <div class="mr-footer-info mb-10">
                     <h3 class="xb-item--title">Get in touch</h3>
                     <p class="xb-item--info">+919908082672<br>
                         acmeequipmentscompany@gmail.com <br>
                         Ranigunj, Secunderabad 500003</p>
-                    <ul class="xb-item--social ul_li">
-                        <li><a href="#!"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href="#!"><i class="fab fa-linkedin-in"></i></a></li>
-                        <li><a href="#!"><i class="fab fa-instagram"></i></a></li>
-                    </ul>
                 </div>
             </div>
             <div class="footer-main mb-60">
                 <div class="row mt-none-40">
                     <div class="col-lg-3 footer-col mt-40">
-                        <div class="footer-widget">
-                            <h3 class="widget-title">Newsletter</h3>
-                            <p>Sign up to seargin weekly newsletter <br> to get the latest updates.</p>
-                            <form action="#" class="mr-footer-newsletter mt-35">
-                                <span class="icon"><img src="assets/img/icon/mr-sms-tracking.svg" alt=""></span>
-                                <input type="text" placeholder="Your Email Address">
-                                <button><img src="assets/img/icon/mr_arrow_up.svg" alt=""></button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 footer-col mt-40">
-                        <div class="footer-widget">
-                            <h3 class="widget-title">Categories</h3>
-                            <ul class="footer-links list-unstyled">
-                                ${
-                                    categories.map((category: any) => `
-                                        <li><a href="/products?category=${category.id}">${category.name}</a></li>
-                                    `).join('')
-                                }
-                            </ul>
-                        </div>
+                        ${withProducts.map((category: any) => `
+                            <div class="footer-widget">
+                                <h3 class="widget-title">${category.name}</h3>
+                                <ul class="footer-links list-unstyled">
+                                    ${category.products.map((product: any) => `
+                                        <li><a href="/products/${product.id}">${product.name}</a></li>
+                                    `).join('')}
+                                </ul>
+                            </div>
+                        `)}
                     </div>
                     <!--
                     <div class="col-lg-3 footer-col mt-40">
