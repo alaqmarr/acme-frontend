@@ -27,7 +27,7 @@ const Foot = ({categories}: {categories: any}) => {
                 <div class="mr-footer-info mb-10">
                     <h3 class="xb-item--title">Get in touch</h3>
                     <p class="xb-item--info">+919908082672<br>
-                        acmeequipmentscompany@gmail.com <br>
+                        acme.salesdept@gmail.com <br>
                         Ranigunj, Secunderabad 500003</p>
                 </div>
             </div>

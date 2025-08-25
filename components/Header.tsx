@@ -144,7 +144,7 @@ const Header = ({ categories, products }: { categories: any, products: any }) =>
             <ul class="sidebar-info-list list-unstyled">
                 <li><span><img src="assets/img/icon/star-2.svg" alt=""></span>Ranigunj, Secunderabad 500003</li>
                 <li><a href="#!"><span><img src="assets/img/icon/star-2.svg" alt=""></span>+919908082672</a></li>
-                <li><a href="#!"><span><img src="assets/img/icon/star-2.svg" alt=""></span>acmeequipmentscompany@gmail.com</a></li>
+                <li><a href="#!"><span><img src="assets/img/icon/star-2.svg" alt=""></span>acme.salesdept@gmail.com</a></li>
             </ul>
         </div>
         <div class="sidebar-social mr-footer-info mt-65">
