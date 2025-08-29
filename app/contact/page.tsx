@@ -5,7 +5,7 @@ const page = () => {
   <main>
 
             <!-- breadcrumb start -->
-            <section class="breadcrumb bg_img" data-bg-color="#E7E9EE" data-background="assets/img/bg/page_title.png">
+            <section class="breadcrumb bg_img" data-bg-color="#E7E9EE">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-9">
