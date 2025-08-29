@@ -11,6 +11,8 @@ const Home = ({ brands, categories, products }: { brands: any, categories: any, 
             return { ...category, products: categoryProducts };
         })
         .filter((category: any) => category.products && category.products.length > 0);
+        // extract all products images for slideshow
+        const productImages = products.map((product: any) => product.images[0]?.url).filter((url: string) => url);
     const html = `
         <main>
         <!-- hero start -->
@@ -50,9 +52,11 @@ const Home = ({ brands, categories, products }: { brands: any, categories: any, 
         <!-- marquee start -->
         <section class="marquee" data-bg-color="#131313">
             <div class="mr-marquee marquee-left">
-                ${brands.map((brand: any) => (`
-                    <div class="mr-marquee__item"><span><img src="${brand.image}" alt="" width="100" style="mix-blend-mode:normal;"></span></div>
-                `))}
+                
+            ${
+                productImages.map((url: string) => `
+                <div class="mr-marquee__item"><span><img src="${url}" alt="" width="100" style="mix-blend-mode:normal;"></span></div>
+            `)}
             </div>
         </section>
         <!-- marquee end -->

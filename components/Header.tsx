@@ -61,7 +61,7 @@ const Header = ({ categories, products }: { categories: any, products: any }) =>
                                     </ul>
                                 </li>
                                 -->
-                                <li><a href="contact.html"><span>Contact</span></a></li>
+                                <li><a href="/contact"><span>Contact</span></a></li>
                             </ul>
                         </nav>
                         <div class="xb-header-wrap style-black">
@@ -84,7 +84,7 @@ const Header = ({ categories, products }: { categories: any, products: any }) =>
                                                     </li>
                                                     `
                                                 )).join('')}
-                                            <li class="menu-item"><a href="contact.html"><span>Contact</span></a></li>
+                                            <li class="menu-item"><a href="/contact"><span>Contact</span></a></li>
                                         </ul>
                                     </nav>
                                 </div>
@@ -142,8 +142,8 @@ const Header = ({ categories, products }: { categories: any, products: any }) =>
         <div class="sidebar-contact-info mb-65">
             <h4 class="sidebar-heading">Contact Information</h4>
             <ul class="sidebar-info-list list-unstyled">
-                <li><span><img src="assets/img/icon/star-2.svg" alt=""></span>Ranigunj, Secunderabad 500003</li>
-                <li><a href="#!"><span><img src="assets/img/icon/star-2.svg" alt=""></span>+919908082672</a></li>
+                <li><span><img src="assets/img/icon/star-2.svg" alt=""></span><a href="https://www.google.com/maps/place/ACME+%7C+Industrial+Equipments+Company/data=!4m2!3m1!1s0x0:0xd2dc31518ea779f7?sa=X&ved=1t:2428&ictx=111">Shop No, 4-2-260, Mahankali St, Old Bhoiguda, Rani Gunj, Secunderabad, Telangana 500003</a></li>
+                <li><a href="#!"><span><img src="assets/img/icon/star-2.svg" alt=""></span>+91 99080 82672</a></li>
                 <li><a href="#!"><span><img src="assets/img/icon/star-2.svg" alt=""></span>acme.salesdept@gmail.com</a></li>
             </ul>
         </div>
